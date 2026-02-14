@@ -1,0 +1,307 @@
+.loading-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--dark-color), var(--primary-color));
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.loading-container {
+    width: 100%;
+    max-width: 500px;
+    padding: 2rem;
+}
+
+.loading-content {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.loading-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.loading-logo i {
+    font-size: 4rem;
+    color: var(--primary-color);
+}
+
+.loading-logo h1 {
+    font-size: 2.5rem;
+    color: var(--dark-color);
+    font-weight: 700;
+}
+
+.loading-animation {
+    margin-bottom: 2rem;
+}
+
+.loading-bar {
+    width: 100%;
+    height: 10px;
+    background-color: #eee;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.loading-progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    width: 0%;
+    border-radius: 5px;
+    transition: width 0.3s ease;
+}
+
+.loading-text {
+    color: #666;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Estilos para perfiles en pantalla de carga */
+.loading-profiles {
+    animation: fadeIn 0.5s ease;
+}
+
+.loading-profiles h2 {
+    margin-bottom: 2rem;
+    color: var(--dark-color);
+}
+
+.profiles-list {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.profile-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 10px;
+    border: 2px solid #eee;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.profile-item:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.profile-avatar-small {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--primary-color);
+}
+
+.profile-avatar-small img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-info-small h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem;
+    text-align: left;
+}
+
+.profile-info-small p {
+    font-size: 0.9rem;
+    color: #666;
+    text-align: left;
+}
+
+.btn-new-profile {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.btn-new-profile:hover {
+    background-color: #5a4fcf;
+    transform: translateY(-2px);
+}
+
+/* Estilos para formulario de perfil */
+.login-form {
+    animation: fadeIn 0.5s ease;
+}
+
+.login-form h2 {
+    margin-bottom: 2rem;
+    color: var(--dark-color);
+}
+
+#profileForm .form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+#profileForm label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--dark-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#profileForm input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+#profileForm input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+#profileForm small {
+    display: block;
+    margin-top: 0.3rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn-cancel, .btn-submit {
+    flex: 1;
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-cancel {
+    background-color: #eee;
+    color: var(--dark-color);
+}
+
+.btn-submit {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-cancel:hover {
+    background-color: #ddd;
+}
+
+.btn-submit:hover {
+    background-color: #5a4fcf;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive para pantalla de carga */
+@media (max-width: 768px) {
+    .loading-container {
+        padding: 1rem;
+    }
+    
+    .loading-content {
+        padding: 2rem;
+    }
+    
+    .loading-logo h1 {
+        font-size: 2rem;
+    }
+    
+    .loading-logo i {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .loading-content {
+        padding: 1.5rem;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+}
+
+/* Estilos para el logo con imagen */
+.loading-logo .logo-image {
+    width: 100px; /* Ajusta según tu imagen */
+    height: auto; /* Mantiene proporción */
+    margin-bottom: 1rem;
+}
+
+/* O si prefieres mantener el icono y la imagen juntos */
+.loading-logo .logo-with-icon {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.loading-logo .logo-with-icon img {
+    width: 80px;
+    height: auto;
+}
+
+/* O si quieres solo imagen y texto centrado */
+.loading-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.loading-logo img {
+    width: 120px;
+    height: auto;
+    border-radius: 10px; /* Opcional: si quieres bordes redondeados */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Opcional: sombra */
+}
+
+.loading-logo h1 {
+    font-size: 2.5rem;
+    color: var(--dark-color);
+    font-weight: 700;
+    text-align: center;
+}

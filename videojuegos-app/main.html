@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameMaster - Biblioteca de Videojuegos</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar/Navegación -->
+    <nav class="sidebar" id="sidebar">
+        <div class="profile-info">
+            <div class="profile-avatar" id="currentProfileAvatar">
+                <img src="" alt="Avatar">
+            </div>
+            <div class="profile-details">
+                <h3 id="currentProfileName">Usuario</h3>
+                <p id="currentProfileEmail">email@ejemplo.com</p>
+            </div>
+        </div>
+        
+        <ul class="nav-menu">
+            <li><a href="#dashboard" class="active"><i class="fas fa-home"></i> Inicio</a></li>
+            <!-- Elemento de Plataformas eliminado -->
+            <li><a href="#my-games"><i class="fas fa-list"></i> Mis Juegos</a></li>
+            <li><a href="#add-game"><i class="fas fa-plus-circle"></i> Agregar Juego</a></li>
+            <li><a href="#delete-games"><i class="fas fa-trash-alt"></i> Eliminar Juegos</a></li>
+            <li><a href="#profiles"><i class="fas fa-users"></i> Perfiles</a></li>
+            <li><a href="#stats"><i class="fas fa-chart-bar"></i> Estadísticas</a></li>
+        </ul>
+        
+        <div class="nav-footer">
+            <button class="btn-logout" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+            </button>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main class="main-content" id="mainContent">
+        <!-- Dashboard/Inicio -->
+        <section id="dashboard" class="content-section active">
+            <div class="section-header">
+                <h2><i class="fas fa-home"></i> Dashboard</h2>
+                <div class="section-actions">
+                    <button class="btn-switch-profile" id="switchProfileBtn">
+                        <i class="fas fa-user-friends"></i> Cambiar Perfil
+                    </button>
+                </div>
+            </div>
+            
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: #6c5ce7;">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalGames">0</h3>
+                        <p>Juegos Totales</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: #00b894;">
+                        <i class="fas fa-tv"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalPlatforms">0</h3>
+                        <p>Plataformas</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: #fd79a8;">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalProfiles">1</h3>
+                        <p>Perfiles</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: #fdcb6e;">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="avgRating">0.0</h3>
+                        <p>Rating Promedio</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="recent-games">
+                <h3><i class="fas fa-history"></i> Juegos Recientes</h3>
+                <div class="games-grid" id="recentGames">
+                    <!-- Juegos recientes se cargarán aquí -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Mis Juegos -->
+        <section id="my-games" class="content-section">
+            <div class="section-header">
+                <h2><i class="fas fa-list"></i> Mis Juegos</h2>
+                <div class="filter-controls">
+                    <select id="platformFilter" class="filter-select">
+                        <option value="all">Todas las plataformas</option>
+                    </select>
+                    <select id="genreFilter" class="filter-select">
+                        <option value="all">Todos los géneros</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="games-container" id="gamesList">
+                <!-- Los juegos se cargarán aquí -->
+            </div>
+        </section>
+
+        <!-- Sección Agregar Juego -->
+        <section id="add-game" class="content-section">
+            <div class="section-header">
+                <h2><i class="fas fa-plus-circle"></i> Agregar Nuevo Juego</h2>
+            </div>
+            
+            <div class="form-container">
+                <form id="addGameForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="gameTitle"><i class="fas fa-heading"></i> Título *</label>
+                            <input type="text" id="gameTitle" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="gamePlatform"><i class="fas fa-gamepad"></i> Plataforma *</label>
+                            <select id="gamePlatform" required>
+                                <option value="">Selecciona plataforma</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="gameGenre"><i class="fas fa-theater-masks"></i> Género *</label>
+                            <select id="gameGenre" required>
+                                <option value="">Selecciona género</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="gameRating"><i class="fas fa-star"></i> Calificación (1-10)</label>
+                            <input type="range" id="gameRating" min="1" max="10" value="5">
+                            <span class="rating-value" id="ratingValue">5</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="gameDescription"><i class="fas fa-align-left"></i> Descripción</label>
+                        <textarea id="gameDescription" rows="4"></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="gameImage"><i class="fas fa-image"></i> URL de Imagen</label>
+                            <input type="url" id="gameImage">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="gameRelease"><i class="fas fa-calendar"></i> Año de Lanzamiento</label>
+                            <input type="number" id="gameRelease" min="1970" max="2024">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-tags"></i> Etiquetas (separadas por coma)</label>
+                        <input type="text" id="gameTags" placeholder="acción, aventura, multiplayer">
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="reset" class="btn-cancel">Limpiar</button>
+                        <button type="submit" class="btn-submit">
+                            <i class="fas fa-save"></i> Guardar Juego
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Sección Eliminar Juegos -->
+        <section id="delete-games" class="content-section">
+            <div class="section-header">
+                <h2><i class="fas fa-trash-alt"></i> Eliminar Juegos</h2>
+                <div class="bulk-actions">
+                    <button class="btn-delete-all" id="deleteSelectedBtn" disabled>
+                        <i class="fas fa-trash"></i> Eliminar Seleccionados
+                    </button>
+                    <button class="btn-delete-all" id="deletePlatformBtn">
+                        <i class="fas fa-gamepad"></i> Eliminar por Plataforma
+                    </button>
+                </div>
+            </div>
+            
+            <div class="delete-controls">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchDelete" placeholder="Buscar juegos para eliminar...">
+                </div>
+                
+                <div class="select-all">
+                    <input type="checkbox" id="selectAllGames">
+                    <label for="selectAllGames">Seleccionar todos</label>
+                </div>
+            </div>
+            
+            <div class="games-to-delete" id="gamesToDelete">
+                <!-- Juegos para eliminar se cargarán aquí -->
+            </div>
+            
+            <div class="delete-by-platform" id="deleteByPlatformSection" style="display: none;">
+                <h3>Eliminar por Plataforma</h3>
+                <div class="platform-delete-list" id="platformDeleteList">
+                    <!-- Opciones de eliminación por plataforma -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Perfiles -->
+        <section id="profiles" class="content-section">
+            <div class="section-header">
+                <h2><i class="fas fa-users"></i> Gestión de Perfiles</h2>
+                <button class="btn-add-profile" id="addNewProfileBtn">
+                    <i class="fas fa-user-plus"></i> Nuevo Perfil
+                </button>
+            </div>
+            
+            <div class="profiles-management">
+                <div class="profiles-grid" id="profilesGrid">
+                    <!-- Todos los perfiles se mostrarán aquí -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Estadísticas -->
+        <section id="stats" class="content-section">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-bar"></i> Estadísticas</h2>
+                <div class="stats-filters">
+                    <select id="statsPeriod" class="filter-select">
+                        <option value="all">Todo el tiempo</option>
+                        <option value="year">Este año</option>
+                        <option value="month">Este mes</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="stats-container">
+                <div class="chart-container">
+                    <canvas id="platformsChart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <canvas id="genresChart"></canvas>
+                </div>
+                
+                <div class="stats-cards">
+                    <div class="stat-card-large">
+                        <h3>Plataforma más popular</h3>
+                        <p id="mostPopularPlatform">-</p>
+                    </div>
+                    
+                    <div class="stat-card-large">
+                        <h3>Género favorito</h3>
+                        <p id="mostPopularGenre">-</p>
+                    </div>
+                    
+                    <div class="stat-card-large">
+                        <h3>Juego mejor calificado</h3>
+                        <p id="topRatedGame">-</p>
+                    </div>
+                    
+                    <div class="stat-card-large">
+                        <h3>Total horas jugadas</h3>
+                        <p id="totalHours">0 horas</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal para agregar plataforma -->
+    <div class="modal" id="platformModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-plus"></i> Agregar Nueva Plataforma</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="platformForm">
+                    <div class="form-group">
+                        <label for="platformName">Nombre *</label>
+                        <input type="text" id="platformName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="platformManufacturer">Fabricante</label>
+                        <input type="text" id="platformManufacturer">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="platformRelease">Año de lanzamiento</label>
+                        <input type="number" id="platformRelease" min="1970" max="2024">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="platformIcon">Ícono (Font Awesome)</label>
+                        <input type="text" id="platformIcon" placeholder="fas fa-gamepad">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="platformColor">Color</label>
+                        <input type="color" id="platformColor" value="#6c5ce7">
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel modal-close">Cancelar</button>
+                        <button type="submit" class="btn-submit">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para cambiar perfil -->
+    <div class="modal" id="switchProfileModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-user-friends"></i> Cambiar Perfil</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="profiles-switch-list" id="switchProfilesList">
+                    <!-- Perfiles para cambiar -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/games.js"></script>
+    <script src="js/platforms.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

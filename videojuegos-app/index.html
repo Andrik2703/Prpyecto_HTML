@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameMaster - Cargando</title>
+    <link rel="stylesheet" href="css/loading.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="loading-page">
+    <!-- Pantalla de carga -->
+    <div class="loading-container">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <i class="fas fa-gamepad"></i>
+                <h1>GameMaster</h1>
+            </div>
+            
+            <div class="loading-animation">
+                <div class="loading-bar">
+                    <div class="loading-progress" id="loadingProgress"></div>
+                </div>
+                <p class="loading-text" id="loadingText">Inicializando sistema...</p>
+            </div>
+            
+            <div class="loading-profiles" id="profilesSection" style="display: none;">
+                <h2>Seleccionar Perfil</h2>
+                <div class="profiles-list" id="profilesList">
+                    <!-- Los perfiles se cargarán aquí -->
+                </div>
+                <button class="btn-new-profile" id="newProfileBtn">
+                    <i class="fas fa-user-plus"></i> Crear Nuevo Perfil
+                </button>
+            </div>
+            
+            <div class="login-form" id="loginForm" style="display: none;">
+                <h2>Crear Nuevo Perfil</h2>
+                <form id="profileForm">
+                    <div class="form-group">
+                        <label for="profileName"><i class="fas fa-user"></i> Nombre *</label>
+                        <input type="text" id="profileName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="profileAge"><i class="fas fa-birthday-cake"></i> Edad *</label>
+                        <input type="number" id="profileAge" min="1" max="120" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="profileEmail"><i class="fas fa-envelope"></i> Email *</label>
+                        <input type="email" id="profileEmail" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="profilePhone"><i class="fas fa-phone"></i> Teléfono</label>
+                        <input type="tel" id="profilePhone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="profilePhoto"><i class="fas fa-camera"></i> Foto de Perfil (URL)</label>
+                        <input type="url" id="profilePhoto" placeholder="https://ejemplo.com/foto.jpg">
+                        <small>O deja en blanco para usar avatar por defecto</small>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel" id="cancelProfileBtn">Cancelar</button>
+                        <button type="submit" class="btn-submit">Crear Perfil</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
